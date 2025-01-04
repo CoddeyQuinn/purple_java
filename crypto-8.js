@@ -1,33 +1,19 @@
 function crypto(password) {
 	const split = password.split('');
-	function del() {
-		split.unshift(split.pop());
-	}
-	del();
-	del();
-	del();
-	return split.join('');
+	let a = split.splice(0, 3);
+	
+	[a[0], a[1], a[2]] = [a[2], a[1], a[0]];
+	
+	let reunion = a.concat(split);
+
+	return reunion.join('');
 }
+console.log(crypto('qwerty'))
 
-
-console.log(crypto('qwerty'));
-
-
-
-function check(keyWord, keyWord2) {
-	const splitKeyWord = keyWord.split('');
-	function undel() {
-		splitKeyWord.push(splitKeyWord.shift());
-	}
-	undel();
-	undel();
-	undel();
-	const reunion = splitKeyWord.join('');
-	if (reunion === keyWord2) {
+function check(password, encryptedPassword) {
+	if (password === crypto(encryptedPassword))
 		return true;
-	}
 	return false;
 }
-	
 
-console.log(check('rtyqwe', 'qwerty'));
+console.log(check('qwerty', crypto('qwerty')));

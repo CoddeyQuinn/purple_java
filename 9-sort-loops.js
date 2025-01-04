@@ -1,15 +1,15 @@
 const arr = [1, 40, -5, 10, 0];
 
 function sorting(massive) {
-    for(let i = 0; i < massive.length; i++) {
-        for(let j = 1; j < massive.lenght; j++) {
-            if (massive[i] > massive[j]) {
-               const a = massive.splice(i, 1);
-	            massive.unshift(a[i]);
+    const clonedMassive = massive.slice();
+    for(let i = 0; i < clonedMassive.length; i++) {
+        for(let j = 1; j < clonedMassive.length; j++) {
+            if (clonedMassive[i] > clonedMassive[j]) {
+               [clonedMassive[i], clonedMassive[j]] = [clonedMassive[j], clonedMassive[i]];
             }
         }
     }
-    return massive;
+    return clonedMassive;
 }
 
 console.log(sorting(arr));
